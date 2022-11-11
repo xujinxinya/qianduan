@@ -3,13 +3,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zhaoxiban/pages/routine/model/routineIterm.dart';
 
 class RoutineList with ChangeNotifier {
-  List<RoutineModel> schedule=<RoutineModel>[];//存每日行程
-  void getSchedule(List<RoutineModel> routineData)async
+  List<int> schedule=<int>[];//存每日行程
+  void getSchedule(int item)async
   {
-    schedule=routineData;
-    print(schedule);
+    schedule.add(item);
+    print("schedule[1].isSelected");
     notifyListeners();
     //final data = await SharedPreferences.getInstance();//存入磁盘
-    //data.setString('language', appLanguage);
+    //data.setStringList('schedule', schedule);
+  }
+  void moveSchedule(int item)async
+  {
+    schedule.remove(item);
+    notifyListeners();
   }
 }

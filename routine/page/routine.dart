@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zhaoxiban/pages/routine/provider/routineProvider.dart';
 import 'package:zhaoxiban/pages/routine/model/routineIterm.dart';
 import 'package:zhaoxiban/pages/routine/page/routine_add.dart';
-import 'package:zhaoxiban/pages/routine/page/routine_delect.dart';
+import 'package:zhaoxiban/pages/routine/page/routine_delete.dart';
 
 class Routine extends StatefulWidget {
   const Routine({key}) : super(key: key);
@@ -109,7 +109,7 @@ class _RoutineState extends State<Routine> {
                             setState(() {
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) {
-                                  return const Routine_delect();
+                                  return const Routine_delete();
                                 },
                               ));
                             });

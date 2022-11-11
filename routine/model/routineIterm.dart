@@ -10,26 +10,25 @@ class RoutineIterm extends StatefulWidget {
 }
 
 class RoutineItermState extends State<RoutineIterm> {
-  List<RoutineModel> routineData = <RoutineModel>[];
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    routineData.add( RoutineModel(true, true, '练习普通话','5:50'));
-    routineData.add( RoutineModel(true, true, '吃早饭','6:30'));
-    routineData.add( RoutineModel(false, false, '吃药','8:00'));
-  }
   Widget build(BuildContext context) {
     return  Container(
         height: 460.0,
         width: 420.0,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
-            builder: (context, funcLanguage, child) {
+
+            builder: (context, funcRoutine, child) {
               return ListView.builder(
                 itemCount: routineData.length,
                 itemBuilder: (BuildContext context, int index) {
-
+                  int key_index = 0;
+                  int real_key = 0;
+                  for(int key in routineData.keys) {
+                    real_key = key;
+                    if (key_index == index) break;
+                    key_index ++;
+                  }
                 return  Container(
                     height: 143.0,
                     width: 400.0,
@@ -49,7 +48,7 @@ class RoutineItermState extends State<RoutineIterm> {
                             child: Row(
                                 children: [
                                   Text(
-                                      routineData[index].time,
+                                      routineData[real_key][3],
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                           color:Color.fromRGBO(0, 0, 0, 1.0),
@@ -62,7 +61,7 @@ class RoutineItermState extends State<RoutineIterm> {
                                     margin:const EdgeInsets.only(left: 20 ),
                                     child: Image(
                                       image:
-                                      routineData[index].isAm?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
+                                      routineData[real_key][1]?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
                                       height: 60.0,
                                       width: 50.0,
                                     ),
@@ -72,13 +71,12 @@ class RoutineItermState extends State<RoutineIterm> {
                                       child: MaterialButton(
                                         onPressed: (){
                                           setState(() {
-                                            routineData[index].isSelected=!routineData[index].isSelected;
-                                            RoutineList().getSchedule(routineData);
+                                            routineData[real_key][0]=!routineData[real_key][0];
                                           });
                                         },
                                         child:Image(
                                           image:
-                                          routineData[index].isSelected==true?AssetImage("assets/img/routine_open.png") :AssetImage("assets/img/routine_close.png"),
+                                          routineData[real_key][0]==true?AssetImage("assets/img/routine_open.png") :AssetImage("assets/img/routine_close.png"),
                                           height: 120.0,
                                           width: 90.0,
                                         ),
@@ -95,7 +93,7 @@ class RoutineItermState extends State<RoutineIterm> {
                             top: 75,
                             left: 30,
                             child: Text(
-                                routineData[index].text,
+                                routineData[real_key][2],
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color:Color.fromRGBO(0, 0, 0, 1.0),
@@ -116,10 +114,9 @@ class RoutineItermState extends State<RoutineIterm> {
   }
 }
 
-class RoutineModel {
-  bool isSelected;
-  bool isAm;
-  final String text;
-  final String time;
-  RoutineModel(this.isSelected, this.isAm, this.text,this.time);
-}
+
+Map routineData={
+  0:[true, true, '练习普通话', '5:50'],
+  4:[true, true, '吃早饭', '6:30'],
+  7:[false, false, '吃药', '8:00'],
+};

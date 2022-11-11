@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zhaoxiban/pages/homepage/page/HomePage.dart';
+import 'package:zhaoxiban/pages/routine/model/routine_addIterm.dart';
 
 class Routine_add extends StatefulWidget {
   const Routine_add({key}) : super(key: key);
@@ -60,16 +61,42 @@ class _Routine_addState extends State<Routine_add> {
                 ),
                 Positioned(
                   width: MediaQuery.of(context).size.width,
-                  top: 30,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(214, 197, 99, 1.0),
+                  top: 70,
+                  child: new Routine_addIterm(),
+                ),
+                Positioned(
+                  width: 300,
+                  left: 60,
+                  top: 540,
+                  child:  Container(
+                      decoration:const  BoxDecoration(
+                      color: Color.fromRGBO(65, 178, 0, 1.0),
+                      borderRadius: BorderRadius.all( Radius.circular(20.0)),
                     ),
-                  ),
+                    child:  TextButton(
+                      onPressed: (){
+                        setState(() {
+
+                        });
+                      },
+                      child:const Text(
+                        "确认添加",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: Color.fromRGBO(255, 255, 255, 1.0),
+                            fontSize: 35.0,
+                            fontFamily: 'SHS'),
+                      ),
+
+
+                    ),
+                  )
+
                 )
-              ]
-          ),
-        ),
+        ]
+    )
+    )
     );
   }
 }
