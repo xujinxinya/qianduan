@@ -21,17 +21,10 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
         width: 420.0,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
-            builder: (context, funcLanguage, child) {
+            builder: (context, funcRoutine, child) {
               return ListView.builder(
                 itemCount: routineData.length,
                 itemBuilder: (BuildContext context, int index) {
-                  int key_index = 0;
-                  int real_key = 0;
-                  for(int key in routineData.keys) {
-                    real_key = key;
-                    if (key_index == index) break;
-                    key_index ++;
-                  }
                   return  Container(
                       height: 143.0,
                       width: 400.0,
@@ -51,7 +44,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                               child: Row(
                                   children: [
                                     Text(
-                                        routineData[real_key][3],
+                                        routineData[routineKey[index]][3],
                                         textAlign: TextAlign.left,
                                         style: const TextStyle(
                                             color:Color.fromRGBO(0, 0, 0, 1.0),
@@ -64,7 +57,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                                       margin:const EdgeInsets.only(left: 20 ),
                                       child: Image(
                                         image:
-                                        routineData[real_key][1]?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
+                                        routineData[routineKey[index]][1]?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
                                         height: 60.0,
                                         width: 50.0,
                                       ),
@@ -77,7 +70,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                                                 context: context,
                                                 builder: (context) => AlertDialog(
                                                   title: Text(
-                                                      '删除  '+routineData[real_key][3],
+                                                      '删除  '+routineData[routineKey[index]][3],
                                                       style: const TextStyle(
                                                           color:Color.fromRGBO(0, 0, 0, 1.0),
                                                           fontWeight: FontWeight.w900,
@@ -86,7 +79,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                                                       )
                                                   ),
                                                   content: Text(
-                                                    routineData[real_key][2],
+                                                    routineData[routineKey[index]][2],
                                                       style: const TextStyle(
                                                           color:Color.fromRGBO(0, 0, 0, 1.0),
                                                           fontWeight: FontWeight.w900,
@@ -117,7 +110,11 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                                                             )
                                                         ),
                                                         onPressed: () {
-                                                          Navigator.of(context).pop();
+                                                          setState(() {
+                                                            funcRoutine.getDelete(routineKey[index]);
+                                                            print(routineData);
+                                                            Navigator.of(context).pop();
+                                                          });
                                                         },
                                                       ),
                                                     ),
@@ -168,7 +165,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                               top: 75,
                               left: 30,
                               child: Text(
-                                  routineData[real_key][2],
+                                  routineData[routineKey[index]][2],
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                       color:Color.fromRGBO(0, 0, 0, 1.0),

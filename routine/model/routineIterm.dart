@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zhaoxiban/pages/routine/provider/routineProvider.dart';
 
+int index_1;
+
 class RoutineIterm extends StatefulWidget {
   @override
   createState() {
@@ -17,18 +19,23 @@ class RoutineItermState extends State<RoutineIterm> {
         width: 420.0,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
-
             builder: (context, funcRoutine, child) {
+              if(null !=funcRoutine.schedule)
+              {
+                for(String item in funcRoutine.schedule){
+                  routineData[item][0]=true;
+                 }
+                }
+              if(null !=funcRoutine.delete) {
+                for (String item in funcRoutine.delete) {
+                  routineData.remove(item);
+                  routineKey.remove(item);
+                }
+              }
               return ListView.builder(
                 itemCount: routineData.length,
                 itemBuilder: (BuildContext context, int index) {
-                  int key_index = 0;
-                  int real_key = 0;
-                  for(int key in routineData.keys) {
-                    real_key = key;
-                    if (key_index == index) break;
-                    key_index ++;
-                  }
+                  index_1=index;
                 return  Container(
                     height: 143.0,
                     width: 400.0,
@@ -48,7 +55,7 @@ class RoutineItermState extends State<RoutineIterm> {
                             child: Row(
                                 children: [
                                   Text(
-                                      routineData[real_key][3],
+                                      routineData[routineKey[index]][3],
                                       textAlign: TextAlign.left,
                                       style: const TextStyle(
                                           color:Color.fromRGBO(0, 0, 0, 1.0),
@@ -61,7 +68,7 @@ class RoutineItermState extends State<RoutineIterm> {
                                     margin:const EdgeInsets.only(left: 20 ),
                                     child: Image(
                                       image:
-                                      routineData[real_key][1]?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
+                                      routineData[routineKey[index]][1]?AssetImage("assets/img/routine_am.png"):AssetImage("assets/img/routine_pm.png"),
                                       height: 60.0,
                                       width: 50.0,
                                     ),
@@ -71,12 +78,18 @@ class RoutineItermState extends State<RoutineIterm> {
                                       child: MaterialButton(
                                         onPressed: (){
                                           setState(() {
-                                            routineData[real_key][0]=!routineData[real_key][0];
+                                            routineData[routineKey[index]][0]=!routineData[routineKey[index]][0];
+                                            if( routineData[routineKey[index]][0]==true){
+                                              funcRoutine.getSchedule(routineKey[index]);
+                                            }else{
+                                              funcRoutine.moveSchedule(routineKey[index]);
+                                            }
+
                                           });
                                         },
                                         child:Image(
                                           image:
-                                          routineData[real_key][0]==true?AssetImage("assets/img/routine_open.png") :AssetImage("assets/img/routine_close.png"),
+                                          routineData[routineKey[index]][0]==true?AssetImage("assets/img/routine_open.png") :AssetImage("assets/img/routine_close.png"),
                                           height: 120.0,
                                           width: 90.0,
                                         ),
@@ -93,7 +106,7 @@ class RoutineItermState extends State<RoutineIterm> {
                             top: 75,
                             left: 30,
                             child: Text(
-                                routineData[real_key][2],
+                                routineData[routineKey[index]][2],
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color:Color.fromRGBO(0, 0, 0, 1.0),
@@ -114,9 +127,9 @@ class RoutineItermState extends State<RoutineIterm> {
   }
 }
 
-
+List<String>routineKey=["0","1","2"];
 Map routineData={
-  0:[true, true, '练习普通话', '5:50'],
-  4:[true, true, '吃早饭', '6:30'],
-  7:[false, false, '吃药', '8:00'],
+  "0":[false, true, '练习普通话', '5:50','每次','默认'],//0：是否被选择；1：是否是早上
+  "1":[false, true, '吃早饭', '6:30','每次','默认'],
+  "2":[false, false, '吃药', '8:00','每次','默认'],
 };
