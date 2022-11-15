@@ -22,8 +22,8 @@ class ShowRepeatState extends State<ShowRepeat> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 270.0,
-        width: 470.0,
+        height: MediaQuery.of(context).size.height *0.3,
+        width: MediaQuery.of(context).size.width *0.7,
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
               return ListView.builder(
@@ -124,7 +124,8 @@ class ShowRepeatState extends State<ShowRepeat> {
                         });
                       },
                       child: Container(
-                        margin:const EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
+                        width: MediaQuery.of(context).size.width *0.65,
+                        margin:const EdgeInsets.only( top: 20.0),
                         alignment: Alignment.center,
                         decoration:const BoxDecoration(
                             border: Border(
@@ -139,7 +140,7 @@ class ShowRepeatState extends State<ShowRepeat> {
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
                             Container( //文字
-                              width: 150,
+                              width: MediaQuery.of(context).size.width *0.65*0.7,
                               margin:const EdgeInsets.only(left: 20.0, bottom: 10.0),
                               child: Text(
                                   repeatData[index_1],
@@ -151,8 +152,7 @@ class ShowRepeatState extends State<ShowRepeat> {
                               ),
                             ),
                             Container( //单选按钮
-                              height: 45.0,
-                              width: 45.0,
+                              width: MediaQuery.of(context).size.width *0.65*0.1,
                               child: Text("✔",
                                   style:  TextStyle(
                                       color: isSelect[repeatData[index_1]][0] ==

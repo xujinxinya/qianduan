@@ -40,15 +40,16 @@ class _Routine_addState extends State<Routine_add> {
           ),
         ),
         body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width ,
           decoration: const BoxDecoration(
             color: Color.fromRGBO(214, 197, 99, 1.0),
           ),
-          child: Stack(
-              fit: StackFit.expand,
+          child: Column(
               children: [
-                Positioned(
+                Container(
                   width: MediaQuery.of(context).size.width,
-                  top: 20,
+                  margin: const EdgeInsets.only(top: 10),
                   child:const Text(
                     "添加行程",
                     textAlign: TextAlign.center,
@@ -59,15 +60,12 @@ class _Routine_addState extends State<Routine_add> {
                         fontFamily: 'SHS'),
                   ),
                 ),
-                Positioned(
+                Container(
                   width: MediaQuery.of(context).size.width,
-                  top: 70,
                   child: new Routine_addIterm(),
                 ),
-                Positioned(
+                Container(
                   width: 300,
-                  left: 60,
-                  top: 540,
                   child:  Container(
                       decoration:const  BoxDecoration(
                       color: Color.fromRGBO(65, 178, 0, 1.0),

@@ -17,8 +17,8 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
   }
   Widget build(BuildContext context) {
     return  Container(
-        height: 460.0,
-        width: 420.0,
+        height: MediaQuery.of(context).size.height *0.67,
+        width: MediaQuery.of(context).size.width *0.98,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
@@ -26,8 +26,8 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                 itemCount: routineData.length,
                 itemBuilder: (BuildContext context, int index) {
                   return  Container(
-                      height: 143.0,
-                      width: 400.0,
+                      height: MediaQuery.of(context).size.height *0.67*0.3,
+                      width: MediaQuery.of(context).size.width *0.98,
                       margin:const EdgeInsets.only(left: 10.0,bottom:10.0,right:10.0 ),
                       alignment: Alignment.center,
                       decoration:const  BoxDecoration(

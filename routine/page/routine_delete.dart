@@ -40,6 +40,8 @@ class _Routine_deleteState extends State<Routine_delete> {
         ),
       ),
       body: Container(
+        height: MediaQuery.of(context).size.height ,
+        width: MediaQuery.of(context).size.width ,
         decoration: const BoxDecoration(
           color: Color.fromRGBO(214, 197, 99, 1.0),
         ),
@@ -61,7 +63,6 @@ class _Routine_deleteState extends State<Routine_delete> {
               ),
               Positioned(
                 width: MediaQuery.of(context).size.width,
-                height: 520,
                 top: 80,
                 child: new Routine_deleteIterm(),
               )

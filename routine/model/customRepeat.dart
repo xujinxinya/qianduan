@@ -25,8 +25,8 @@ class CustomRepeatState extends State<CustomRepeat> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-        height: 270.0,
-        width: 470.0,
+        height: MediaQuery.of(context).size.height *0.3,
+        width: MediaQuery.of(context).size.width *0.7,
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
               // sampleData.forEach((element) => element.isSelected = false);

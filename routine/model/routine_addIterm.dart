@@ -10,9 +10,11 @@ import 'package:zhaoxiban/pages/routine/model/showSchedule.dart';
 //数据定义
 String imgUrl="";
 int index_1;
+String content_1="设置行程";
 String setTime="设置时间";
 List<String>addList=["时间","行程","重复","铃声"];
-List<String>setList=[setTime,"1111","22222","3333"];
+List<String>setList=[setTime,content_1,"22222","3333"];
+int flag=0;
 
 class Routine_addIterm extends StatefulWidget {
   @override
@@ -23,18 +25,16 @@ class Routine_addIterm extends StatefulWidget {
 
 class Routine_addItermState extends State<Routine_addIterm> {
 
-
   @override
-  void initState() {
 
-  }
   Widget build(BuildContext context) {
     return  Container(
-        height: 420.0,
-        width: 420.0,
+        height: MediaQuery.of(context).size.height *0.64,
+        width: MediaQuery.of(context).size.width *0.98,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
-            builder: (context, funcLanguage, child) {
+            builder: (context, funcRoutine, child) {
+
               return ListView.builder(
                 itemCount: addList.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -48,9 +48,10 @@ class Routine_addItermState extends State<Routine_addIterm> {
                 }else if(index==3){
                   imgUrl="assets/img/routine_ring.png";
                 }
+
                   return  Container(
-                      height: 133.0,
-                      width: 400.0,
+                      height: MediaQuery.of(context).size.height *0.67*0.3,
+                      width: MediaQuery.of(context).size.width *0.98,
                       margin:const EdgeInsets.only(left: 10.0,bottom:10.0,right:10.0 ),
                       alignment: Alignment.center,
                       decoration:const  BoxDecoration(
@@ -60,8 +61,6 @@ class Routine_addItermState extends State<Routine_addIterm> {
                       child:  Stack(
                           children: [
                             Positioned(
-                              height: 71.5,
-                              width: 400.0,
                               top:10,
                               left: 30,
                               child: Row(
@@ -88,8 +87,6 @@ class Routine_addItermState extends State<Routine_addIterm> {
                               ),
                             ),
                             Positioned(
-                              height: 71.5,
-                              width: 400.0,
                               top: 65,
                               left: 20,
                               child:  TextButton(
@@ -145,10 +142,16 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                                       )
                                                   ),
                                                   onPressed: () {
-                                                    print(time_1_1);
-                                                    print(time_1_2);
-                                                    print(time_1_1+":"+time_1_2);
-                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      if (funcRoutine.isam == true) {
+                                                        setTime = "am  " + funcRoutine.hour + ":" + funcRoutine.minute;
+                                                      } else {
+                                                        setTime = "pm    " + funcRoutine.hour + ":" + funcRoutine.minute;
+                                                      }
+                                                      print(setTime);
+                                                      Navigator.of(context).pop();
+                                                    });
+
                                                   },
                                                 ),
                                               ),
@@ -233,7 +236,10 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                                         )
                                                     ),
                                                     onPressed: () {
-                                                      Navigator.of(context).pop();
+                                                      setState(() {
+                                                        content_1=funcRoutine.content;
+                                                        Navigator.of(context).pop();
+                                                      });
                                                     },
                                                   ),
                                                 ),

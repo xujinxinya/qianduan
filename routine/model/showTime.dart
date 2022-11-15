@@ -4,9 +4,8 @@ import 'package:zhaoxiban/pages/routine/provider/routineProvider.dart';
 import 'package:zhaoxiban/pages/routine/model/routine_addIterm.dart';
 
 List<String>amPm=["assets/img/routine_am.png","assets/img/routine_pm.png"];
-String time_0;
-String time_1_1;
-String time_1_2;
+String time_1_1="1";
+String time_1_2="1";
 
 class ShowTime extends StatefulWidget {
   @override
@@ -20,15 +19,15 @@ class ShowTimeState extends State<ShowTime> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 270.0,
-        width: 470.0,
+        height: MediaQuery.of(context).size.height *0.3,
+        width: MediaQuery.of(context).size.width *0.7,
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
 
               return Row(
                   children: [
                     Container(
-                      width: 90,
+                      width: MediaQuery.of(context).size.width *0.7*0.3,
                       child:Stack(
                         children: [
                           Center(
@@ -47,7 +46,6 @@ class ShowTimeState extends State<ShowTime> {
                             pageSnapping: true,
                             physics: AlwaysScrollableScrollPhysics(),
                             itemBuilder: (ctx ,index ){
-                              time_0=amPm[index];
                               return Center(
                                 child: Image(
                                   image: AssetImage(amPm[index]),
@@ -57,15 +55,20 @@ class ShowTimeState extends State<ShowTime> {
                               );
                             },
                             onPageChanged: (int index) {
-                              time_0=amPm[index];
-                              print(time_0);
+                              if(index==0)
+                              {
+                                funcRoutine.getAm(true);
+                                }else{
+                                funcRoutine.getAm(false);
+                              }
+
                             },
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      width: 90,
+                      width: MediaQuery.of(context).size.width *0.7*0.3,
                       child:Stack(
                         children: [
                           Center(
@@ -99,14 +102,14 @@ class ShowTimeState extends State<ShowTime> {
                             },
                             onPageChanged: (int index) {
                               time_1_1=index.toString();
-                              print(time_1_1);
+                              funcRoutine.getHour(time_1_1);
                             },
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      width: 90,
+                      width: MediaQuery.of(context).size.width *0.7*0.3,
                       child:Stack(
                         children: [
                           Center(
@@ -140,7 +143,7 @@ class ShowTimeState extends State<ShowTime> {
                             },
                             onPageChanged: (int index) {
                               time_1_2=index.toString();
-                              print(time_1_2);
+                              funcRoutine.getHour(time_1_2);
                             },
                           ),
                         ],

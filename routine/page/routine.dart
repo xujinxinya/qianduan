@@ -46,6 +46,8 @@ class _RoutineState extends State<Routine> {
           ),
         ),
         body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
             color: Color.fromRGBO(214, 197, 99, 1.0),
           ),
@@ -56,8 +58,8 @@ class _RoutineState extends State<Routine> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 100.0,
-                        width: 100.0,
+                        height: MediaQuery.of(context).size.height / 8,
+                        width: MediaQuery.of(context).size.width / 4,
                         margin: const EdgeInsets.only(right: 100.0),
                         decoration:const BoxDecoration(  //背景装饰
                           color: Color.fromRGBO(255, 255, 255, 1.0),
@@ -82,16 +84,18 @@ class _RoutineState extends State<Routine> {
                               ));
                             });
                           },
-                          child:const Image(
-                            image: AssetImage("assets/img/routine_add.png"),
-                            height: 90.0,
-                            width: 90.0,
-                          ),
+                          child:Container(
+                            height: MediaQuery.of(context).size.height / 8,
+                            width: MediaQuery.of(context).size.width / 4,
+                            child:const Image(
+                              image: AssetImage("assets/img/routine_add.png"),
+                            ),
+                          )
                       ),
                       ),
                       Container(
-                        height: 100.0,
-                        width: 100.0,
+                        height: MediaQuery.of(context).size.height / 8,
+                        width: MediaQuery.of(context).size.width / 4,
                         decoration:const BoxDecoration(  //背景装饰
                           color: Color.fromRGBO(255, 255, 255, 1.0),
                           boxShadow: [
@@ -114,11 +118,13 @@ class _RoutineState extends State<Routine> {
                               ));
                             });
                           },
-                        child:const Image(
-                          image: AssetImage("assets/img/routine_delete.png"),
-                          height: 90.0,
-                          width: 90.0,
-                        ),
+                            child:Container(
+                              height: MediaQuery.of(context).size.height / 8,
+                              width: MediaQuery.of(context).size.width / 4,
+                              child:const Image(
+                                image: AssetImage("assets/img/routine_delete.png"),
+                              ),
+                            )
                         ),
                       ),
                     ],
