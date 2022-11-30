@@ -12,28 +12,19 @@ class ShowSchedule extends StatefulWidget {
 }
 
 class ShowScheduleState extends State<ShowSchedule> {
-  TextEditingController _unameController = TextEditingController();
   @override
-  void initState() {
-    //监听输入改变
-    _unameController.addListener((){
-      print(_unameController.text);
-    });
-  }
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height *0.15,
+        height: MediaQuery.of(context).size.height *0.1,
         width: MediaQuery.of(context).size.width *0.7,
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
-              funcRoutine.getContent(_unameController.text);
               return TextField(
                 style:const TextStyle(
                     color:Color.fromRGBO(0,0, 0, 1.0),
                     fontWeight: FontWeight.w900,
                     fontSize: 30.0,
                     fontFamily: 'SHS'),
-                controller: _unameController,
                 decoration:const InputDecoration(
                   hintText: "请输入行程信息",
                   hintStyle:TextStyle(
@@ -64,6 +55,10 @@ class ShowScheduleState extends State<ShowSchedule> {
                     ),
                   ),
                 ),
+                onChanged: (text) {
+                  funcRoutine.getContent(text);
+                },
+
               );
 
             }

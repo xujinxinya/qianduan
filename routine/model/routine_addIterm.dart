@@ -13,9 +13,10 @@ int index_1;
 String content_1="设置行程";
 String setTime="设置时间";
 List<String>addList=["时间","行程","重复","铃声"];
-List<String>setList=[setTime,content_1,"22222","3333"];
+List<String>setList=[setTime,content_1,repeat_1,ring_1];
 int flag=0;
-
+String repeat_1="每天";
+String ring_1="默认";
 class Routine_addIterm extends StatefulWidget {
   @override
   createState() {
@@ -29,12 +30,25 @@ class Routine_addItermState extends State<Routine_addIterm> {
 
   Widget build(BuildContext context) {
     return  Container(
-        height: MediaQuery.of(context).size.height *0.64,
+        height: MediaQuery.of(context).size.height *0.62,
         width: MediaQuery.of(context).size.width *0.98,
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
-
+              content_1=funcRoutine.content;
+              repeat_1=funcRoutine.repeat;
+              ring_1=funcRoutine.ring;
+              print("content="+content_1);
+              setList[1]=content_1;
+              if (funcRoutine.isam == true) {
+                setTime = "上午  " + funcRoutine.hour + ":" + funcRoutine.minute;
+              } else {
+                setTime = "下午    " + funcRoutine.hour + ":" + funcRoutine.minute;
+              }
+              setList[0]=setTime;
+              setList[2]=repeat_1;
+              setList[3]=ring_1;
+              print(setList);
               return ListView.builder(
                 itemCount: addList.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -50,7 +64,7 @@ class Routine_addItermState extends State<Routine_addIterm> {
                 }
 
                   return  Container(
-                      height: MediaQuery.of(context).size.height *0.67*0.3,
+                      height: MediaQuery.of(context).size.height *0.62*0.3,
                       width: MediaQuery.of(context).size.width *0.98,
                       margin:const EdgeInsets.only(left: 10.0,bottom:10.0,right:10.0 ),
                       alignment: Alignment.center,
@@ -87,7 +101,7 @@ class Routine_addItermState extends State<Routine_addIterm> {
                               ),
                             ),
                             Positioned(
-                              top: 65,
+                              top: 60,
                               left: 20,
                               child:  TextButton(
                                   onPressed: (){
@@ -196,7 +210,7 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                                       margin:const EdgeInsets.only(left: 40,right: 20 ),
                                                       child: Image(
                                                         image: AssetImage(imgUrl),
-                                                        height: 60.0,
+                                                        height: 40.0,
                                                         width: 50.0,
                                                       ),
                                                     ),
@@ -238,6 +252,7 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                                     onPressed: () {
                                                       setState(() {
                                                         content_1=funcRoutine.content;
+                                                        print("content111="+content_1);
                                                         Navigator.of(context).pop();
                                                       });
                                                     },
@@ -444,9 +459,11 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                       }
                                     }
                                   },
-                                child: Text(
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width *0.8,
+                                  child:Text(
                                     setList[index],
-                                    textAlign: TextAlign.left,
+                                    textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         color:Color.fromRGBO(0, 0, 0, 1.0),
                                         fontWeight: FontWeight.w900,
@@ -454,6 +471,7 @@ class Routine_addItermState extends State<Routine_addIterm> {
                                         fontFamily: 'SHS'
                                     )
                                 ),
+                                )
                               )
 
                             ),

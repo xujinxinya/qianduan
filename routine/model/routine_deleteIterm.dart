@@ -63,7 +63,7 @@ class Routine_deleteItermState extends State<Routine_deleteIterm> {
                                       ),
                                     ),
                                     Container(
-                                       margin:const EdgeInsets.only(left: 90 ),
+                                        width: (MediaQuery.of (context). size .width) / 2,
                                         child: MaterialButton(
                                           onPressed: (){
                                             showDialog(

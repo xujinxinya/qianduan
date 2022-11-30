@@ -6,9 +6,13 @@ import 'package:zhaoxiban/pages/routine/model/routineIterm.dart';
 import 'package:zhaoxiban/pages/routine/page/routine_add.dart';
 import 'package:zhaoxiban/pages/routine/page/routine_delete.dart';
 
+
+// void aa(){
+//   FlutterRingtonePlayer.playNotification();
+// }
+
 class Routine extends StatefulWidget {
   const Routine({key}) : super(key: key);
-
   @override
   State<Routine> createState() => _RoutineState();
 }
@@ -110,6 +114,7 @@ class _RoutineState extends State<Routine> {
                         ),
                         child:MaterialButton(
                           onPressed: (){
+                           // aa();
                             setState(() {
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) {

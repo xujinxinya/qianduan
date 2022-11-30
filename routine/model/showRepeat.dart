@@ -39,6 +39,7 @@ class ShowRepeatState extends State<ShowRepeat> {
                             isSelect[repeatData[i]][0] = false;
                           }
                           isSelect[repeatData[index]][0] = true;
+                          funcRoutine.getRepeat(repeatData[index]);
                           if(index==2)
                           {
                             {

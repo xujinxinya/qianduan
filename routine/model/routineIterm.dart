@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zhaoxiban/pages/routine/provider/routineProvider.dart';
 
-int index_1;
 
+int index_1;
+int nowKey=3;
 class RoutineIterm extends StatefulWidget {
   @override
   createState() {
@@ -20,6 +21,7 @@ class RoutineItermState extends State<RoutineIterm> {
         margin: const EdgeInsets.only(top: 20.0,bottom: 20.0),
         child: Consumer<RoutineList>(
             builder: (context, funcRoutine, child) {
+
               if(null !=funcRoutine.schedule)
               {
                 for(String item in funcRoutine.schedule){
@@ -48,7 +50,6 @@ class RoutineItermState extends State<RoutineIterm> {
                     child:  Stack(
                         children: [
                           Positioned(
-                            top:5,
                             left: 30,
                             child: Row(
                                 children: [
@@ -72,9 +73,10 @@ class RoutineItermState extends State<RoutineIterm> {
                                     ),
                                   ),
                                   Container(
-                                      margin:const EdgeInsets.only(left: 60 ),
+                                      width: (MediaQuery.of (context). size .width) / 2,
                                       child: MaterialButton(
                                         onPressed: (){
+
                                           setState(() {
                                             routineData[routineKey[index]][0]=!routineData[routineKey[index]][0];
                                             if( routineData[routineKey[index]][0]==true){

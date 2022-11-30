@@ -8,16 +8,17 @@ class RoutineList with ChangeNotifier {
   String hour="00";
   String minute="00";
   bool isam=false;
-  String content="";
+  String content="设置行程";
+  String repeat="每天";
+  String ring="默认";
   synchronize() async {
     final data = await SharedPreferences.getInstance();
-    if(data.getString('language') == null)
-    {
-      data.setStringList('schedule', schedule);
-    }else{
+
       schedule = data.getStringList('schedule');//读数据
-    }
+      //delete = data.getStringList('delete');//读数据
+
   }
+
   void getSchedule(String item)async
   {
     schedule.add(item);
@@ -32,7 +33,7 @@ class RoutineList with ChangeNotifier {
     print(delete);
     notifyListeners();
     //final data = await SharedPreferences.getInstance();//存入磁盘
-    //data.setStringList('schedule', schedule);
+   // data.setStringList('delete', delete);
   }
   void getAm(bool item)async
   {
@@ -58,6 +59,20 @@ class RoutineList with ChangeNotifier {
   void getContent(String item)async
   {
     content=item;
+    notifyListeners();
+    //final data = await SharedPreferences.getInstance();//存入磁盘
+    //data.setStringList('schedule', schedule);
+  }
+  void getRepeat(String item)async
+  {
+    repeat=item;
+    notifyListeners();
+    //final data = await SharedPreferences.getInstance();//存入磁盘
+    //data.setStringList('schedule', schedule);
+  }
+  void getRing(String item)async
+  {
+    ring=item;
     notifyListeners();
     //final data = await SharedPreferences.getInstance();//存入磁盘
     //data.setStringList('schedule', schedule);

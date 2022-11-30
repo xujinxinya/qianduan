@@ -142,8 +142,13 @@ class ShowTimeState extends State<ShowTime> {
                               );
                             },
                             onPageChanged: (int index) {
-                              time_1_2=index.toString();
-                              funcRoutine.getHour(time_1_2);
+                              if(index<=9)
+                              {
+                                time_1_2='0'+index.toString();
+                                }else{
+                                time_1_2=index.toString();
+                              }
+                              funcRoutine.getMinute(time_1_2);
                             },
                           ),
                         ],

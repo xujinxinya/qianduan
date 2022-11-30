@@ -38,6 +38,7 @@ class ShowRingState extends State<ShowRing> {
                             isSelect[repeatData[i]][0] = false;
                           }
                           isSelect[repeatData[index]][0] = true;
+                          funcRoutine.getRing(repeatData[index]);
                         });
                       },
                       child: Container(
